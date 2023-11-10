@@ -1,39 +1,33 @@
-#!/usr/bin/python3
-
 import sys
 
-params = sys.argv
+def main():
+    # Verificar que se proporcionen los argumentos necesarios
+    if len(sys.argv) != 4:
+        print("Uso: python cambia_palabra.py archivo original nueva")
+        return
 
-while len(params) < 4:
-    if len(params) < 2:
-        parametro = input("¿Cuál es la ruta del fichero? ")
-        if len(parametro) == 0:
-            continue
-        params.append(parametro)
+    # Obtener los argumentos
+    ruta = sys.argv[1]
+    palabra_original = sys.argv[2]
+    palabra_nueva = sys.argv[3]
 
-    if len(params) < 3:
-        parametro = input("¿Cuál es la palabra original? ")
-        if len(parametro) == 0:
-            continue
-        params.append(parametro)
+    try:
+        # Abrir el archivo en modo lectura
+        with open(ruta, "r") as fichero:
+            texto = fichero.read()
 
-    if len(params) < 4:
-        parametro = input("¿Cuál es la palabra nueva? ")
-        if len(parametro) == 0:
-            continue
-        params.append(parametro)
-# params: [argumentos.py, fichero, original, nueva]
+        # Reemplazar la palabra original con la nueva
+        texto_final = texto.replace(palabra_original, palabra_nueva)
 
-ruta = params[1]
-palabra_original = params[2]
-palabra_nueva = params[3]
+        # Abrir el archivo en modo escritura y escribir el texto modificado
+        with open(ruta, "w") as fichero:
+            fichero.write(texto_final)
 
-fichero = open(ruta, "r")
-texto = fichero.read()
-fichero.close()
+        print(f"Palabra '{palabra_original}' cambiada por '{palabra_nueva}' en '{ruta}'.")
+    except FileNotFoundError:
+        print(f"No se encuentra el archivo: {ruta}")
+    except Exception as e:
+        print(f"Error: {e}")
 
-texto_final = texto.replace(palabra_original, palabra_nueva)
-
-fichero = open(ruta, "w")
-fichero.write(texto_final)
-fichero.close()
+if __name__ == "__main__":
+    main()

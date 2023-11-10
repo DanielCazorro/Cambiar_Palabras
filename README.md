@@ -2,11 +2,11 @@
 
 Comando creado en Python que permite cambiar una palabra por otra en un archivo de texto.
 
-Forma de uso:
+## Forma de uso:
 
-```
-cambia_palabra archivo original nueva
-```
+```bash
+python cambia_palabra.py archivo original nueva
+
 
 ## Programas como comando del shell
 

@@ -1,37 +1,33 @@
 import sys
 
-params = sys.argv
+def main():
+    # Obtener los argumentos
+    params = sys.argv
 
-while len(params) < 4:
-    if len(params) < 2:
-        parametro = input("¿Cuál es la ruta del fichero? ")
-        if len(parametro) == 0:
-            continue
-        params.append(parametro)
+    # Pedir la ruta del archivo si no se proporciona
+    while len(params) < 4:
+        if len(params) < 2:
+            parametro = input("¿Cuál es la ruta del fichero? ")
+            if len(parametro) == 0:
+                continue
+            params.append(parametro)
 
-    if len(params) < 3:
-        parametro = input("¿Cuál es la palabra original? ")
-        if len(parametro) == 0:
-            continue
-        params.append(parametro)
+        # Pedir la palabra original si no se proporciona
+        if len(params) < 3:
+            parametro = input("¿Cuál es la palabra original? ")
+            if len(parametro) == 0:
+                continue
+            params.append(parametro)
 
-    if len(params) < 4:
-        parametro = input("¿Cuál es la palabra nueva? ")
-        if len(parametro) == 0:
-            continue
-        params.append(parametro)
-# params: [argumentos.py, fichero, original, nueva]
+        # Pedir la palabra nueva si no se proporciona
+        if len(params) < 4:
+            parametro = input("¿Cuál es la palabra nueva? ")
+            if len(parametro) == 0:
+                continue
+            params.append(parametro)
 
-ruta = params[1]
-palabra_original = params[2]
-palabra_nueva = params[3]
+    # Mostrar los parámetros
+    print(f"Parámetros: {params}")
 
-fichero = open(ruta, "r")
-texto = fichero.read()
-fichero.close()
-
-texto_final = texto.replace(palabra_original, palabra_nueva)
-
-fichero = open(ruta, "w")
-fichero.write(texto_final)
-fichero.close()
+if __name__ == "__main__":
+    main()
